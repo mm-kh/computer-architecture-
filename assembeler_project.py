@@ -1,5 +1,7 @@
 #                                             ASSEMBELER PROJECT FOR COMPUTER ARCHITECTURE
-#                                                       MOHAMMAD-MAHDI KHANI    40021973142
+#                                                  MOHAMMAD-MAHDI KHANI    40021973142
+from prettytable import PrettyTable
+import os
 def assemble(assembly_program):
     address=0
     for line in assembly_program:
@@ -213,7 +215,6 @@ def assemble(assembly_program):
             else:
                 instruction_1.append("ISZ")
 # -----------------------------------------REGISTER INSTRUCTIONS---------------------------------------------------------------
-
         elif tokens[0]=="CLA":
             address=hex_number(address)
             hex_location.append(address)
@@ -436,25 +437,29 @@ operands=[]
 instruction_1=[]
 instruction_code=[]
 final_location=[]
+program_with_symbolic_opcode=PrettyTable(["Location" , "instruction"])
+hexa_program=PrettyTable(["Location" , "instruction"])
+binary_program=PrettyTable(["Location" , "instruction code"])
 # --------------------------------------------------------DISPLAY OUT--------------------------------------------
 operand_finder(assembly_program)
 assemble(assembly_program)
+os.system("cls")
 print("PROGRAM WITH SYMBOLIC OP_CODE")
-print("Location\tInstruction")
 for i in range(len(instruction_1)):
-    print(hex_location[i]+"\t\t"+instruction_1[i])
+    program_with_symbolic_opcode.add_row([hex_location[i] , instruction_1[i]])
+print(program_with_symbolic_opcode)
 
-print("\n\n")
+print("\n")
 print("HEXA PROGRAM")
-print("Location\tInstruction")
 for i in range(len(instruction_2)):
-    print(hex_location[i]+"\t\t"+instruction_2[i])
+    hexa_program.add_row([hex_location[i] , instruction_2[i]])
+print(hexa_program)    
 
-print("\n\n")
+print("\n")
 print("BINARY PROGRAM")
-print("Location\tInstruction code")
 for i in range(len(instruction_2)):
     final_location.append(hexadecimal_to_binary(hex_location[i]))
     instruction_code.append(hexadecimal_to_binary_16_bits(instruction_2[i]))
-    print(final_location[i]+"\t\t"+instruction_code[i])
+    binary_program.add_row([final_location[i] , instruction_code[i]])
+print(binary_program)
     # -----------------------------------------------FINISH----------------------------------------------------
