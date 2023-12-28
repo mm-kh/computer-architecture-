@@ -287,7 +287,6 @@ def assemble(assembly_program):
             instruction_1.append("HLT")
             instruction_2.append("7001")  
 # ------------------------------------------------INPUT OUTPUT INSTRUCTIONS---------------------------------------------------
-
         elif tokens[0]=="INP":
             address=hex_number(address)
             hex_location.append(address)
@@ -324,7 +323,6 @@ def assemble(assembly_program):
             instruction_1.append("IOF")
             instruction_2.append("f040")  
 # ----------------------------------------------------OTHER---------------------------------------------------
-        
         else :
             operand_finder2(tokens)
             new_token=""
@@ -340,12 +338,10 @@ def assemble(assembly_program):
                     hex_location.append(address)
                     break
                 operands_counter+=1
-
         address=int(address)
         if tokens[0]!="ORG":
             address+=1
 # ---------------------------------------------------FUNCTIONS----------------------------------------------------------
-
 def operand_finder(assembly_program):
     line_counter=0
     for line in assembly_program:
@@ -434,7 +430,6 @@ hex_location=[]
 instruction_1=[]
 instruction_2=[]
 operands=[]
-instruction_1=[]
 instruction_code=[]
 final_location=[]
 program_with_symbolic_opcode=PrettyTable(["Location" , "instruction"])
