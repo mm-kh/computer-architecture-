@@ -415,7 +415,7 @@ def hex_to_4bit_hex(hex_number):
     return hex_4bit
 # -------------------------------------------------------INPUT STRING-------------------------------------------
 assembly_program = [
-    "ORG 0",
+    "ORG 50",
     "LDA A",
     "ADD B",
     "STA C",
